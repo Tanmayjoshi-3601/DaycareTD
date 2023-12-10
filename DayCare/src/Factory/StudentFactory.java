@@ -13,12 +13,13 @@ package Factory;
 import Models.Person;
 import Models.School;
 import Models.Student;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import utility.FileUtil;
 
 public class StudentFactory {
@@ -36,16 +37,75 @@ public class StudentFactory {
     }
     
     public static Student getObject(int id, Date dob, int age, String name, 
-            double gpa, String contactName,String emergencyPhone,
+            double gpa, String contactName,String emergencyPhone,String address,
             Date mmrVacc1, Date mmrVacc2, 
             Date varicella1, Date varicella2 ) {
         
         Student tmpstudent = new Student(id, dob, age, name, gpa,
-                      contactName, emergencyPhone, mmrVacc1, mmrVacc2,
+                      contactName, emergencyPhone,address, mmrVacc1, mmrVacc2,
                       varicella1,  varicella2);
+        writeStudentToCSV(tmpstudent,"Students2.csv");
         School.addStudent(tmpstudent);
         return tmpstudent;
     }
+    public static void writeStudentToCSV(Student student, String csvFileName)
+    {
+         SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd-yyyy");
+
+//        try (FileWriter csvWriter = new FileWriter(csvFileName, true)) {
+//            csvWriter.append(Integer.toString(student.getId()));
+//            csvWriter.append(",");
+//            csvWriter.append(dateFormat.format(student.getDateOfBirth()));
+//            csvWriter.append(",");
+//            csvWriter.append(String.valueOf(student.getAge()));
+//            csvWriter.append(",");
+//            csvWriter.append(student.getName());
+//            csvWriter.append(",");
+//            csvWriter.append(Double.toString(student.getGpa()));
+//            csvWriter.append(",");
+//            csvWriter.append(student.getEmergencyName());
+//            csvWriter.append(",");
+//            csvWriter.append(student.getEmergencyPhone());
+//            csvWriter.append(",");
+//            csvWriter.append(student.getPaddress());
+//            csvWriter.append(",");
+//            csvWriter.append(dateFormat.format(student.getMmrVaccine1stDose()));
+//            csvWriter.append(",");
+//            csvWriter.append(dateFormat.format(student.getMmrVaccine2ndDose()));
+//            csvWriter.append(",");
+//            csvWriter.append(dateFormat.format(student.getVaricella1stDose()));
+//            csvWriter.append(",");
+//            csvWriter.append(dateFormat.format(student.getVaricella2ndDose()));
+//            csvWriter.append("\n");
+//
+//            csvWriter.flush();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFileName, true))) {
+            
+             
+             String output = String.valueOf(student.getId())+ "," + DATE_FORMAT.format(student.getDateOfBirth()) + "," + String.valueOf(student.getAge()) + ","+ student.getName() + "," + 
+                    "," + String.valueOf(student.getGpa()) + "," + student.getEmergencyName() + "," + student.getEmergencyPhone() + "," 
+                     + student.getPaddress() + "," + DATE_FORMAT.format(student.getMmrVaccine1stDose()) + "," + DATE_FORMAT.format(student.getMmrVaccine2ndDose())
+                     + "," + DATE_FORMAT.format(student.getVaricella1stDose()) + "," + DATE_FORMAT.format(student.getVaricella2ndDose()) ;
+                       
+
+            bw.write(output + "\n");
+//            writer.append("\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+    }
+   
 
     public static List<Person> addObject(String csvFile) {
 //        String[] fileOutput = csvFile.split("\\r?\\n");
@@ -76,11 +136,12 @@ public class StudentFactory {
                 double gpa = Double.parseDouble(values[4]);
                 String contactName = values[5];
                 String contactPhone = values[6];
+                String pad = values[7];
                 
                 
                 Date mmrVacc1 = null;
                 try{
-                    String mmrVaccine1 = values[7];
+                    String mmrVaccine1 = values[8];
                     mmrVacc1 = new SimpleDateFormat("MM-dd-yyyy").parse(mmrVaccine1);
                 }catch(Exception e){
 //                    System.err.println("Exception ocurred : " + e);
@@ -89,7 +150,7 @@ public class StudentFactory {
 
                 Date mmrVacc2 = null;
                 try{
-                    String mmrVaccine2 = values[8];
+                    String mmrVaccine2 = values[9];
                     mmrVacc2 = new SimpleDateFormat("MM-dd-yyyy").parse(mmrVaccine2);
                 }catch(Exception e){
 //                    System.err.println("Exception ocurred : " + e);
@@ -98,7 +159,7 @@ public class StudentFactory {
                 
                 Date varicellaVacc1 = null;
                 try{
-                    String varicella1 = values[9];
+                    String varicella1 = values[10];
                     varicellaVacc1 = new SimpleDateFormat("MM-dd-yyyy").parse(varicella1);
                 }catch(Exception e){
 //                    System.err.println("Exception ocurred : " + e);
@@ -106,14 +167,14 @@ public class StudentFactory {
                 
                 Date varicellaVacc2 = null;
                 try{
-                    String varicella2 = values[10];
+                    String varicella2 = values[11];
                     varicellaVacc2 = new SimpleDateFormat("MM-dd-yyyy").parse(varicella2);
                 }catch(Exception e){
 //                    System.err.println("Exception ocurred : " + e);
                 }
       
                 tmpStudent = StudentFactory.getObject(id, dob, age, name, gpa,
-                      contactName, contactPhone, mmrVacc1, mmrVacc2, varicellaVacc1,
+                      contactName, contactPhone,pad, mmrVacc1, mmrVacc2, varicellaVacc1,
                       varicellaVacc2);
 //                System.out.println(tmpStudent.toString());
                 tmplist.add(tmpStudent);

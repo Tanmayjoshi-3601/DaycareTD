@@ -24,6 +24,15 @@ public class Person {
     private Date Varicella2ndDose;
     private String emergencyName;
     private String emergencyPhone;
+    private String paddress;
+
+    public String getPaddress() {
+        return paddress;
+    }
+
+    public void setPaddress(String paddress) {
+        this.paddress = paddress;
+    }
 
     public String getEmergencyName() {
         return emergencyName;
@@ -74,7 +83,7 @@ public class Person {
     }
     
     public Person(int id, Date dateOfBirth, int age, String name,
-            String contactName,String emergencyPhone,
+            String contactName,String emergencyPhone,String address,
             Date mmrVacc1, Date mmrVacc2, 
             Date varicella1, Date varicella2){
         this.dateOfBirth = dateOfBirth;
@@ -83,6 +92,7 @@ public class Person {
         this.name = name;
         this.emergencyPhone = emergencyPhone;
         this.emergencyName = contactName;
+        this.paddress = address;
         this.Varicella1stDose = varicella1;
         this.Varicella2ndDose = varicella2;
         this.mmrVaccine1stDose = mmrVacc1;

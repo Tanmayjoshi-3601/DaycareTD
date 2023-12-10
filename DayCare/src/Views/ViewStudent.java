@@ -77,13 +77,13 @@ public class ViewStudent extends javax.swing.JPanel {
 
         tblStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Id", "Age", "DataOfBirth", "Gpa"
+                "Name", "Id", "Age", "DataOfBirth", "Gpa", "ParentAddress"
             }
         ));
         jScrollPane1.setViewportView(tblStudent);
