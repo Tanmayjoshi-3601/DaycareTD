@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dayCareUI;
+package Views;
 
-import Classes.Demo;
-import Classes.School;
-import Classes.Student;
-import Classes.StudentFactory;
-import Classes.Teacher;
+import Controller.DayCareController;
+import Models.School;
+import Models.Student;
+import Factory.StudentFactory;
+import Models.Teacher;
 import java.awt.Container;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -268,7 +268,7 @@ public class LandingPage extends javax.swing.JFrame {
                 new LandingPage().setVisible(true);
             }
         });
-        Demo demoObj = new Demo();
+        DayCareController demoObj = new DayCareController();
         demoObj.run();
     }
 

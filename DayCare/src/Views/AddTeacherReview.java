@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dayCareUI;
+package Views;
 
-import Classes.School;
-import Classes.Teacher;
+import Models.School;
+import Models.Teacher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;

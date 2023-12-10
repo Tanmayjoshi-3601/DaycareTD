@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dayCareUI;
+package Views;
 
-import Classes.School;
-import Classes.Teacher;
-import Classes.TeacherFactory;
+import Models.School;
+import Models.Teacher;
+import Factory.TeacherFactory;
 import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.Date;

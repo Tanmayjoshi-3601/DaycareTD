@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Classes;
+package Factory;
 
+import Models.Person;
+import Models.School;
+import Models.Teacher;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

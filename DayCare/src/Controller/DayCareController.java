@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Classes;
+package Controller;
 
-import static Classes.School.studentlist;
+import Factory.TeacherFactory;
+import Factory.StudentFactory;
+import Models.ClassRoom;
+import Models.School;
+import Models.Student;
+import Models.Teacher;
+import static Models.School.studentlist;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -22,7 +28,7 @@ import static java.util.stream.Collectors.toList;
  *
  * 
  */
-public class Demo {
+public class DayCareController {
     
     public static final Map<String, Integer> studentRatioRules = new HashMap<>(){};
 

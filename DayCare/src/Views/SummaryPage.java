@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dayCareUI;
+package Views;
 
-import static Classes.Demo.studentRatioRules;
-import Classes.School;
-import Classes.Student;
+import static Controller.DayCareController.studentRatioRules;
+import Models.School;
+import Models.Student;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

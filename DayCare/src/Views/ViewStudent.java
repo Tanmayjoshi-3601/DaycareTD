@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dayCareUI;
+package Views;
 
-import Classes.Person;
-import Classes.School;
-import Classes.Student;
+import Models.Person;
+import Models.School;
+import Models.Student;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -56,7 +56,7 @@ public class ViewStudent extends javax.swing.JPanel {
             dtm.addRow(row);
         }
     }
-    
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dayCareUI;
+package Views;
 
-import Classes.ClassRoom;
-import Classes.School;
-import Classes.Student;
-import Classes.Teacher;
+import Models.ClassRoom;
+import Models.School;
+import Models.Student;
+import Models.Teacher;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
