@@ -8,6 +8,11 @@ package Views;
 import Models.Person;
 import Models.School;
 import Models.Student;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,7 +43,18 @@ public class ViewStudent extends javax.swing.JPanel {
             row[3] = String.valueOf(pk.getDateOfBirth());
             row[4] = pk.getGpa();
             row[5] = pk.getPaddress();
-            row[6] = pk.getRegistrationDate();
+            
+            LocalDate localDate = pk.getRegistrationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            // Add one year to the date
+            LocalDate oneYearLater = localDate.plusYears(1);
+
+            // Define the formatter for the output
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+            String formattedOneYearLater = oneYearLater.format(formatter);
+            
+            
+            row[6] = formattedOneYearLater;
             dtm.addRow(row);
         }
     }
@@ -85,7 +101,7 @@ public class ViewStudent extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Id", "Age", "DataOfBirth", "Gpa", "ParentAddress", "Registration Date"
+                "Name", "Id", "Age", "DataOfBirth", "Gpa", "ParentAddress", "Renew Date"
             }
         ));
         jScrollPane1.setViewportView(tblStudent);

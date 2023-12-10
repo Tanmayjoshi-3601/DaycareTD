@@ -11,7 +11,11 @@ package Models;
  */
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import utility.FileUtil;
 
@@ -50,6 +54,7 @@ public class School {
                 student.setMmrVaccine2ndDose(DATE_FORMAT.parse(field[9]));
                 student.setVaricella1stDose(DATE_FORMAT.parse(field[10]));
                 student.setVaricella2ndDose(DATE_FORMAT.parse(field[11]));
+                student.setRegistrationDate(DATE_FORMAT.parse(field[12]));
                 
                 this.addStudent(student);
                 
