@@ -15,6 +15,7 @@ public class Student extends Person {
     
     private double gpa;
     private String ageGroup;
+    private Date registrationDate;
     
 
     public double getGpa() {
@@ -33,16 +34,26 @@ public class Student extends Person {
         this.ageGroup = ageGroup;
     }
     
+    public Date getRegistrationDate(){
+        return this.registrationDate;
+    }
+    
+    public void setRegistrationDate(Date registrationDate){
+        this.registrationDate = registrationDate;
+    }
+    
     public Student(){
     
     }
     
     public Student(int id, Date dob, int age, String name, double gpa,
             String contactName, String emergencyPhone,String address,
-            Date mmrVacc1, Date mmrVacc2, Date varicella1, Date varicella2){
+            Date mmrVacc1, Date mmrVacc2, Date varicella1, Date varicella2, 
+            Date registrationDate){
         super(id, dob, age, name, contactName, emergencyPhone,address,
                 mmrVacc1, mmrVacc2, varicella1, varicella2);
         this.gpa = gpa;
+        this.registrationDate = registrationDate;
         this.setAgeGroup(this.getAgeGroupMapping());
     }
     

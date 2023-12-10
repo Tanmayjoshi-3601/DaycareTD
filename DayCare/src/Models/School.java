@@ -10,9 +10,10 @@ package Models;
  * 
  */
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
+import utility.FileUtil;
 
 public class School {
     public static List<ClassRoom> classrooms;
@@ -24,9 +25,38 @@ public class School {
         classrooms = new ArrayList<>();
         teacherlist = new ArrayList<>();
         studentlist = new ArrayList<>();
+        this.initStudentList("Students2.csv");
     }
     public static School getInstance( ) {
         return instance;
+    }
+      
+    public void initStudentList(String csvFile){
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd-yyyy");
+        List<String> data = (new FileUtil()).filereader(csvFile);
+        for(String record: data){
+            Student student = new Student();
+            String[] field = record.split(",");
+            try {
+                student.setId(Integer.parseInt(field[0]));
+                student.setDateOfBirth(DATE_FORMAT.parse(field[1]));
+                student.setAge(Integer.parseInt(field[2]));
+                student.setName(field[3]);
+                student.setGpa(Double.parseDouble(field[4]));
+                student.setEmergencyName(field[5]);
+                student.setEmergencyPhone(field[6]);
+                student.setPaddress(field[7]);
+                student.setMmrVaccine1stDose(DATE_FORMAT.parse(field[8]));
+                student.setMmrVaccine2ndDose(DATE_FORMAT.parse(field[9]));
+                student.setVaricella1stDose(DATE_FORMAT.parse(field[10]));
+                student.setVaricella2ndDose(DATE_FORMAT.parse(field[11]));
+                
+                this.addStudent(student);
+                
+            } catch(Exception e){
+                e.printStackTrace();
+            } 
+        }
     }
 
     public void printClassRoominformation( ) {

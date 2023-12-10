@@ -31,12 +31,14 @@ public class ViewStudent extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) tblStudent.getModel();
         dtm.setRowCount(0);
         for(Student pk : this.instance.studentlist){
-            Object [] row = new Object[5];
+            Object [] row = new Object[7];
             row[0] = pk;
             row[1] = pk.getId();
             row[2] = pk.getAge();
             row[3] = String.valueOf(pk.getDateOfBirth());
             row[4] = pk.getGpa();
+            row[5] = pk.getPaddress();
+            row[6] = pk.getRegistrationDate();
             dtm.addRow(row);
         }
     }
@@ -77,13 +79,13 @@ public class ViewStudent extends javax.swing.JPanel {
 
         tblStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Id", "Age", "DataOfBirth", "Gpa", "ParentAddress"
+                "Name", "Id", "Age", "DataOfBirth", "Gpa", "ParentAddress", "Registration Date"
             }
         ));
         jScrollPane1.setViewportView(tblStudent);
@@ -116,9 +118,9 @@ public class ViewStudent extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

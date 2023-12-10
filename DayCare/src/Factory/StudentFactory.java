@@ -17,6 +17,10 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,11 +43,11 @@ public class StudentFactory {
     public static Student getObject(int id, Date dob, int age, String name, 
             double gpa, String contactName,String emergencyPhone,String address,
             Date mmrVacc1, Date mmrVacc2, 
-            Date varicella1, Date varicella2 ) {
+            Date varicella1, Date varicella2, Date registrationDate ) {
         
         Student tmpstudent = new Student(id, dob, age, name, gpa,
                       contactName, emergencyPhone,address, mmrVacc1, mmrVacc2,
-                      varicella1,  varicella2);
+                      varicella1,  varicella2, registrationDate);
         writeStudentToCSV(tmpstudent,"Students2.csv");
         School.addStudent(tmpstudent);
         return tmpstudent;
@@ -51,58 +55,20 @@ public class StudentFactory {
     public static void writeStudentToCSV(Student student, String csvFileName)
     {
          SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd-yyyy");
-
-//        try (FileWriter csvWriter = new FileWriter(csvFileName, true)) {
-//            csvWriter.append(Integer.toString(student.getId()));
-//            csvWriter.append(",");
-//            csvWriter.append(dateFormat.format(student.getDateOfBirth()));
-//            csvWriter.append(",");
-//            csvWriter.append(String.valueOf(student.getAge()));
-//            csvWriter.append(",");
-//            csvWriter.append(student.getName());
-//            csvWriter.append(",");
-//            csvWriter.append(Double.toString(student.getGpa()));
-//            csvWriter.append(",");
-//            csvWriter.append(student.getEmergencyName());
-//            csvWriter.append(",");
-//            csvWriter.append(student.getEmergencyPhone());
-//            csvWriter.append(",");
-//            csvWriter.append(student.getPaddress());
-//            csvWriter.append(",");
-//            csvWriter.append(dateFormat.format(student.getMmrVaccine1stDose()));
-//            csvWriter.append(",");
-//            csvWriter.append(dateFormat.format(student.getMmrVaccine2ndDose()));
-//            csvWriter.append(",");
-//            csvWriter.append(dateFormat.format(student.getVaricella1stDose()));
-//            csvWriter.append(",");
-//            csvWriter.append(dateFormat.format(student.getVaricella2ndDose()));
-//            csvWriter.append("\n");
-//
-//            csvWriter.flush();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFileName, true))) {
             
              
-             String output = String.valueOf(student.getId())+ "," + DATE_FORMAT.format(student.getDateOfBirth()) + "," + String.valueOf(student.getAge()) + ","+ student.getName() + "," + 
+             String output = String.valueOf(student.getId())+ "," + DATE_FORMAT.format(student.getDateOfBirth()) + "," + String.valueOf(student.getAge()) + ","+ student.getName() + 
                     "," + String.valueOf(student.getGpa()) + "," + student.getEmergencyName() + "," + student.getEmergencyPhone() + "," 
                      + student.getPaddress() + "," + DATE_FORMAT.format(student.getMmrVaccine1stDose()) + "," + DATE_FORMAT.format(student.getMmrVaccine2ndDose())
                      + "," + DATE_FORMAT.format(student.getVaricella1stDose()) + "," + DATE_FORMAT.format(student.getVaricella2ndDose()) ;
                        
 
             bw.write(output + "\n");
-//            writer.append("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
 
     }
    
@@ -172,10 +138,17 @@ public class StudentFactory {
                 }catch(Exception e){
 //                    System.err.println("Exception ocurred : " + e);
                 }
+                
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+
+                // Get the current date
+                LocalDate currentDate = LocalDate.now();
+                LocalDateTime localDateTime = LocalDateTime.now();
+                Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
       
                 tmpStudent = StudentFactory.getObject(id, dob, age, name, gpa,
                       contactName, contactPhone,pad, mmrVacc1, mmrVacc2, varicellaVacc1,
-                      varicellaVacc2);
+                      varicellaVacc2, date);
 //                System.out.println(tmpStudent.toString());
                 tmplist.add(tmpStudent);
             }catch(Exception e){

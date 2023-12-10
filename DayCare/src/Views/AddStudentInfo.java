@@ -9,6 +9,10 @@ import Models.Student;
 import Factory.StudentFactory;
 import java.awt.Dimension;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -372,10 +376,26 @@ public class AddStudentInfo extends javax.swing.JPanel {
                 System.err.println("Exception ocurred : " + e);
             }
             
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+
+            // Get the current date
+            LocalDate currentDate = LocalDate.now();
+            LocalDateTime localDateTime = LocalDateTime.now();
+            Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+            String formattedCurrentDate = currentDate.format(formatter);
+
+            // Calculate the date one year later
+            LocalDate oneYearLater = currentDate.plusYears(1);
+            String formattedOneYearLater = oneYearLater.format(formatter);
+
+            // Print the dates
+            System.out.println("Current Date: " + formattedCurrentDate);
+            System.out.println("Date One Year Later: " + formattedOneYearLater);
+            
             Student studentObj = StudentFactory.getObject(studentId, dob, 
                     studentAge, stundentName, stundentGpa, contactName, contactPhone,pa,
-                    mmrVaccine1, mmrVaccine2, varicellaDate1, varicellaDate2
-                    );
+                    mmrVaccine1, mmrVaccine2, varicellaDate1, varicellaDate2, 
+                    date);
             JOptionPane.showMessageDialog(this, "Added Stundet Details Successfully");
             JTextField[] jk = new JTextField[] {txtName, txtContactName, txtGPA, txtMMR1, txtMMR2, txtGPA,
                         txtPhone, jTFID, jTFDOB, jTFAge, Vvaccine1, Vvaccine2};
